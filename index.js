@@ -1,5 +1,5 @@
 //Initialize player and CPU score
-let playerChoiceScore = 0;
+let playerScore= 0;
 let cpuScore = 0;
 
 // Store all possible choices
@@ -7,6 +7,8 @@ const choices = ['Rock', 'Paper', 'Scissors'];
 
 // Give player a random choice between the 3.
 const playerChoice = choices[Math.floor(Math.random() * 3)];
+// Or, give the player the option to choose.
+// const playerChoice = userInput.toUppercase;
 console.log(`PLAYER is: ${playerChoice}`);
 
 // CPU randomly chooses Rock, paper, or scissors.
@@ -19,26 +21,34 @@ const computerPlay = () => {
 const cpuChoice = computerPlay();
 console.log(`CPU is: ${cpuChoice}`);
 
-const playRound = (cpuChoice, playerChoice) => {
+const playRound = (cpuDraw, playerDraw) => {
+    cpuDraw = cpuChoice;
+    playerDraw = playerChoice;
     // Determine winner and add points to player's score.
-    if(cpuChoice == playerChoice){
+    if(cpuDraw == playerDraw){
         return("Tie match, go again.");
     }
     // Use bitwise OR operator to test playerChoice's values against cpuChoice()'s values.
     else if (
-        (playerChoice == 'Rock') && (cpuChoice == 'Scissors') ||
-        (playerChoice == 'Scissors') && (cpuChoice == 'Paper') ||
-        (playerChoice == 'Paper') && (cpuChoice == 'Rock')
+        (playerDraw == 'Rock') && (cpuDraw == 'Scissors') ||
+        (playerDraw == 'Scissors') && (cpuDraw == 'Paper') ||
+        (playerDraw == 'Paper') && (cpuDraw == 'Rock')
     ) {
-        playerChoiceScore++;
+        playerScore++;
         return(`Player wins, using ${playerChoice}.`);
     }
     else if (
-        (cpuChoice == 'Rock') && (playerChoice == 'Scissors') ||
-        (cpuChoice == 'Scissors') && (playerChoice == 'Paper') ||
-        (cpuChoice == 'Paper') && (playerChoice == 'Rock')
+        (cpuDraw == 'Rock') && (playerDraw == 'Scissors') ||
+        (cpuDraw == 'Scissors') && (playerDraw == 'Paper') ||
+        (cpuDraw == 'Paper') && (playerDraw == 'Rock')
     ) {
         cpuScore++;
         return(`CPU wins using ${cpuChoice}.`);
     }
+    else {
+        return "Invalid input.";
+    }
 }
+
+console.log(playRound());
+console.log("########################");
