@@ -50,5 +50,6 @@ const playRound = (cpuDraw, playerDraw) => {
     }
 }
 
-console.log(playRound());
-console.log("########################");
+const game = () => {
+
+}
