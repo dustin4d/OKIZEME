@@ -1,37 +1,41 @@
-let player1Score = 0;
-let player2Score = 0;
+let playerChoiceScore = 0;
+let cpuChoiceScore = 0;
 
-// Main function
+// Store all possible choices
+const choices = ['Rock', 'Paper', 'Scissors'];
+
+// Give player a random choice between the 3.
+const playerChoice = choices[Math.floor(Math.random() * 3)];
+
+// CPU randomly chooses Rock, paper, or scissors.
 const computerPlay = () => {
-    // Show all possible choices
-    const choices = ['Rock', 'Paper', 'Scissors'];
-    
-    // player1 random choice
-    const player1 = choices[Math.floor(Math.random() * 3)];
-    //player2 random choice
-    const player2 = choices[Math.floor(Math.random() * 3)];
-    //console.log("Choose by inputting R, P, or S. Then press enter.");
+    const cpuChoice = choices[Math.floor(Math.random() * 3)];
+    return cpuChoice;
+}
+
+const playRound = (cpuChoice, playerChoice) => {
 
     // Determine winner and add points to player's score.
-    if(player1 === player2){
+    if(playerChoice === cpuChoice){
         console.log("Tie match, go again.");
     }
+    // Use bitwise OR operator to test playerChoice's values against cpuChoice's values.
     else if (
-        (player1 == 'Rock') && (player2 == 'Scissors') ||
-        (player1 == 'Scissors') && (player2 == 'Paper') ||
-        (player1 == 'Paper') && (player2 == 'Rock')
+        (playerChoice == 'Rock') && (cpuChoice == 'Scissors') ||
+        (playerChoice == 'Scissors') && (cpuChoice == 'Paper') ||
+        (playerChoice == 'Paper') && (cpuChoice == 'Rock')
     ) {
-        player1Score++;
+        playerChoiceScore++;
         console.log("Player 1 wins.")
     }
     else if (
-        (player2 == 'Rock') && (player1 == 'Scissors') ||
-        (player2 == 'Scissors') && (player1 == 'Paper') ||
-        (player2 == 'Paper') && (player1 == 'Rock')
+        (cpuChoice == 'Rock') && (playerChoice == 'Scissors') ||
+        (cpuChoice == 'Scissors') && (playerChoice == 'Paper') ||
+        (cpuChoice == 'Paper') && (playerChoice == 'Rock')
     ) {
-        player2Score++;
+        cpuChoiceScore++;
         console.log("Player 2 wins.");
     }
 }
 
-computerPlay();
+console.log(computerPlay());
