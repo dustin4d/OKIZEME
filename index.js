@@ -1,41 +1,44 @@
+//Initialize player and CPU score
 let playerChoiceScore = 0;
-let cpuChoiceScore = 0;
+let cpuScore = 0;
 
 // Store all possible choices
 const choices = ['Rock', 'Paper', 'Scissors'];
 
 // Give player a random choice between the 3.
 const playerChoice = choices[Math.floor(Math.random() * 3)];
+console.log(`PLAYER is: ${playerChoice}`);
 
 // CPU randomly chooses Rock, paper, or scissors.
 const computerPlay = () => {
-    const cpuChoice = choices[Math.floor(Math.random() * 3)];
-    return cpuChoice;
+    return choices[Math.floor(Math.random() * 3)];
 }
 
-const playRound = (cpuChoice, playerChoice) => {
+// Save the returned value as a variable, so we dont generate a random outcome for every time
+// we use the computerPlay() function.
+const cpuChoice = computerPlay();
+console.log(`CPU is: ${cpuChoice}`);
 
+const playRound = (cpuChoice, playerChoice) => {
     // Determine winner and add points to player's score.
-    if(playerChoice === cpuChoice){
-        console.log("Tie match, go again.");
+    if(cpuChoice == playerChoice){
+        return("Tie match, go again.");
     }
-    // Use bitwise OR operator to test playerChoice's values against cpuChoice's values.
+    // Use bitwise OR operator to test playerChoice's values against cpuChoice()'s values.
     else if (
         (playerChoice == 'Rock') && (cpuChoice == 'Scissors') ||
         (playerChoice == 'Scissors') && (cpuChoice == 'Paper') ||
         (playerChoice == 'Paper') && (cpuChoice == 'Rock')
     ) {
         playerChoiceScore++;
-        console.log("Player 1 wins.")
+        return(`Player wins, using ${playerChoice}.`);
     }
     else if (
         (cpuChoice == 'Rock') && (playerChoice == 'Scissors') ||
         (cpuChoice == 'Scissors') && (playerChoice == 'Paper') ||
         (cpuChoice == 'Paper') && (playerChoice == 'Rock')
     ) {
-        cpuChoiceScore++;
-        console.log("Player 2 wins.");
+        cpuScore++;
+        return(`CPU wins using ${cpuChoice}.`);
     }
 }
-
-console.log(computerPlay());
