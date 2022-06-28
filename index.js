@@ -5,42 +5,30 @@ let cpuScore = 0;
 // Store all possible choices
 const choices = ['Rock', 'Paper', 'Scissors'];
 
-// Give player a random choice between the 3.
-const playerChoice = choices[Math.floor(Math.random() * 3)];
-// Or, give the player the option to choose.
-// const playerChoice = userInput.toUppercase;
-console.log(`PLAYER is: ${playerChoice}`);
+const playRound = (cpuChoice, playerChoice) => {
+    // Give player a random choice between the 3.
+    playerChoice = choices[Math.floor(Math.random() * 3)];
 
-// CPU randomly chooses Rock, paper, or scissors.
-const computerPlay = () => {
-    return choices[Math.floor(Math.random() * 3)];
-}
+    // Give CPU a random choice of Rock, Paper, or Scissors
+    cpuChoice = choices[Math.floor(Math.random() * 3)];
 
-// Save the returned value as a variable, so we dont generate a random outcome for every time
-// we use the computerPlay() function.
-const cpuChoice = computerPlay();
-console.log(`CPU is: ${cpuChoice}`);
-
-const playRound = (cpuDraw, playerDraw) => {
-    cpuDraw = cpuChoice;
-    playerDraw = playerChoice;
     // Determine winner and add points to player's score.
-    if(cpuDraw == playerDraw){
-        return("Tie match, go again.");
+    if(cpuChoice == playerChoice){
+        return("Tie match!");
     }
     // Use bitwise OR operator to test playerChoice's values against cpuChoice()'s values.
     else if (
-        (playerDraw == 'Rock') && (cpuDraw == 'Scissors') ||
-        (playerDraw == 'Scissors') && (cpuDraw == 'Paper') ||
-        (playerDraw == 'Paper') && (cpuDraw == 'Rock')
+        (playerChoice == 'Rock') && (cpuChoice == 'Scissors') ||
+        (playerChoice == 'Scissors') && (cpuChoice == 'Paper') ||
+        (playerChoice == 'Paper') && (cpuChoice == 'Rock')
     ) {
         playerScore++;
         return(`Player wins, using ${playerChoice}.`);
     }
     else if (
-        (cpuDraw == 'Rock') && (playerDraw == 'Scissors') ||
-        (cpuDraw == 'Scissors') && (playerDraw == 'Paper') ||
-        (cpuDraw == 'Paper') && (playerDraw == 'Rock')
+        (cpuChoice == 'Rock') && (playerChoice == 'Scissors') ||
+        (cpuChoice == 'Scissors') && (playerChoice == 'Paper') ||
+        (cpuChoice == 'Paper') && (playerChoice == 'Rock')
     ) {
         cpuScore++;
         return(`CPU wins using ${cpuChoice}.`);
@@ -51,5 +39,11 @@ const playRound = (cpuDraw, playerDraw) => {
 }
 
 const game = () => {
-
+    for (let i = 0; i < 5; i++) {
+        console.log(`### GAME ${i+1} ###`);
+        console.log(`${playRound()}`);
+        console.log(`Player Score: ${playerScore}   CPU Score: ${cpuScore}\n`);
+    }
 }
+
+game();
