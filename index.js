@@ -43,6 +43,14 @@ const game = () => {
         console.log(`### GAME ${i+1} ###`);
         console.log(`${playRound()}`);
         console.log(`Player Score: ${playerScore}   CPU Score: ${cpuScore}\n`);
+    
+    if (playerScore > cpuScore) {
+        console.log(`Player wins! ${playerScore} to CPU ${cpuScore}.`);
+    } else if (cpuScore > playerScore) {
+       console.log(`CPU wins! ${cpuScore} to Player's ${playerScore}.`);
+    } else {
+        console.log("Damn, tie match.");
+        }
     }
 }
 
