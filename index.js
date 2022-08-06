@@ -38,6 +38,11 @@ const playRound = (cpuChoice, playerChoice) => {
     }
 }
 
+// 4. Three buttons with eventListeners that call playRound w/ correct playerChoice
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', playRound));
+
+/* 3. remove 5 round logic
 const game = () => {
     for (let i = 0; i < 5; i++) {
         console.log(`### GAME ${i+1} ###`);
@@ -53,5 +58,5 @@ const game = () => {
         }
     }
 }
-
+*/
 game();
