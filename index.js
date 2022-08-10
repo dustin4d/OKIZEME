@@ -41,9 +41,9 @@ const btnRock = document.querySelector('#btn-rock')
 const btnPaper = document.querySelector('#btn-paper')
 const btnScissors = document.querySelector('#btn-scissors')
 
-btnRock.addEventListener('click', () => clicked('ROCK'));
-btnPaper.addEventListener('click', () => clicked('PAPER'));
-btnScissors.addEventListener('click', () => clicked('SCISSORS'));
+btnRock.addEventListener('click', () => clicked('ROCK 🤜🏻'));
+btnPaper.addEventListener('click', () => clicked('PAPER ✋🏻'));
+btnScissors.addEventListener('click', () => clicked('SCISSORS ✌🏻'));
 
 // Need multiple things to be done when the button is pressed, and writing all of it
 // in the addEventListener line would be... sloppy and make me uncomfortable, so
