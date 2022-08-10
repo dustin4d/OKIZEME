@@ -5,15 +5,10 @@ let cpuScore = 0;
 // Store all possible choices
 const choices = ['Rock', 'Paper', 'Scissors'];
 
-const playRound = (cpuChoice, playerChoice) => {
-    // Give player a random choice between the 3.
-    // playerChoice = choices[Math.floor(Math.random() * 3)];
-
-    // Give player the choice based on the button they clicked
-    //playerChoice = ;
+const playRound = (playerChoice) => {
 
     // Give CPU a random choice of Rock, Paper, or Scissors
-    cpuChoice = choices[Math.floor(Math.random() * 3)];
+    const cpuChoice = choices[Math.floor(Math.random() * 3)];
 
     // Determine winner and add points to player's score.
     if(cpuChoice == playerChoice){
@@ -42,12 +37,16 @@ const playRound = (cpuChoice, playerChoice) => {
 }
 
 // 4. Three buttons with eventListeners that call playRound w/ correct playerChoice
+// Can also use document.getElementById, but query selector covers more bases
 const btnRock = document.querySelector('#btn-rock')
 const btnPaper = document.querySelector('#btn-paper')
 const btnScissors = document.querySelector('#btn-scissors')
 
+btnRock.addEventListener('click', () => console.log('rock'));
+btnPaper.addEventListener('click', () => console.log('paper'));
+btnScissors.addEventListener('click', () => console.log('scissors'));
 
-console.log(buttons)
+console.log(btnRock, btnPaper, btnScissors);
 /* 3. remove 5 round logic
 const game = () => {
     for (let i = 0; i < 5; i++) {
