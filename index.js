@@ -5,11 +5,10 @@ let cpuScore = 0;
 // Store all possible choices
 const choices = ['Rock', 'Paper', 'Scissors'];
 
+// Globally scoped cpu choice so it can go into any function
+const cpuChoice = choices[Math.floor(Math.random() * 3)];
+
 const playRound = (playerChoice) => {
-
-    // Give CPU a random choice of Rock, Paper, or Scissors
-    const cpuChoice = choices[Math.floor(Math.random() * 3)];
-
     // Determine winner and add points to player's score.
     if(cpuChoice == playerChoice){
         return("Tie match!");
@@ -42,11 +41,18 @@ const btnRock = document.querySelector('#btn-rock')
 const btnPaper = document.querySelector('#btn-paper')
 const btnScissors = document.querySelector('#btn-scissors')
 
-btnRock.addEventListener('click', () => console.log('rock'));
-btnPaper.addEventListener('click', () => console.log('paper'));
-btnScissors.addEventListener('click', () => console.log('scissors'));
+btnRock.addEventListener('click', () => clicked('ROCK'));
+btnPaper.addEventListener('click', () => clicked('PAPER'));
+btnScissors.addEventListener('click', () => clicked('SCISSORS'));
 
-console.log(btnRock, btnPaper, btnScissors);
+// Need multiple things to be done when the button is pressed, and writing all of it
+// in the addEventListener line would be... sloppy and make me uncomfortable, so
+// we'll need to write a function that we can pass as the second arg for the click.
+function clicked(playerChoice) {
+    console.log(playerChoice);
+}
+
+
 /* 3. remove 5 round logic
 const game = () => {
     for (let i = 0; i < 5; i++) {
