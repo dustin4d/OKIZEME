@@ -3,12 +3,15 @@ let playerScore= 0;
 let cpuScore = 0;
 
 // Store all possible choices
+const cpuChoiceGlobal = ''
 const choices = ['Rock', 'Paper', 'Scissors'];
 
-// Globally scoped cpu choice so it can go into any function
-const cpuChoice = choices[Math.floor(Math.random() * 3)];
-
-const playRound = (playerChoice) => {
+const generateRandom = () => {
+    return choices[Math.floor(Math.random() * 3)];
+}
+function playRound(playerChoice, cpuChoice) {
+    cpuChoice = generateRandom()
+    cpuChoiceGlobal = cpuChoice
     // Determine winner and add points to player's score.
     if(cpuChoice == playerChoice){
         return("Tie match!");
@@ -40,16 +43,20 @@ const playRound = (playerChoice) => {
 const btnRock = document.querySelector('#btn-rock')
 const btnPaper = document.querySelector('#btn-paper')
 const btnScissors = document.querySelector('#btn-scissors')
+const playerScorecard = document.querySelector('.player-score')
+const cpuScorecard = document.querySelector('.cpu-score')
 
 btnRock.addEventListener('click', () => clicked('ROCK 🤜🏻'));
 btnPaper.addEventListener('click', () => clicked('PAPER ✋🏻'));
 btnScissors.addEventListener('click', () => clicked('SCISSORS ✌🏻'));
 
+
 // Need multiple things to be done when the button is pressed, and writing all of it
 // in the addEventListener line would be... sloppy and make me uncomfortable, so
 // we'll need to write a function that we can pass as the second arg for the click.
 function clicked(playerChoice) {
-    console.log(playerChoice);
+    console.log(playerChoice)
+    playerScorecard.innerHTML = playerChoice
 }
 
 

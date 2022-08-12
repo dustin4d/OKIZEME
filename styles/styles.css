@@ -1,0 +1,21 @@
+*, ::after*, ::before* {
+    box-sizing: border-box;
+}
+
+body {
+}
+
+.container {
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    width: 20%;
+}
+
+.scoreboard {
+    background-color: grey;
+}
