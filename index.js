@@ -2,17 +2,33 @@
 let playerScore= 0;
 let cpuScore = 0;
 
-// Store all possible choices
-const cpuChoiceGlobal = ''
-const choices = ['Rock', 'Paper', 'Scissors'];
+// 4. Three buttons with eventListeners that call playRound w/ correct playerChoice
+// Can also use document.getElementById, but query selector covers more bases
+const btnRock = document.querySelector('#btn-rock')
+const btnPaper = document.querySelector('#btn-paper')
+const btnScissors = document.querySelector('#btn-scissors')
+const playerScorecard = document.querySelector('.player-score')
+const cpuScorecard = document.querySelector('.cpu-score')
 
-const generateRandom = () => {
-    return choices[Math.floor(Math.random() * 3)];
+// Give the buttons the eventlisteners that will play the game
+btnRock.addEventListener('click', () => clicked('Rock 🤜🏻'));
+btnPaper.addEventListener('click', () => clicked('Paper ✋🏻'));
+btnScissors.addEventListener('click', () => clicked('Scissors ✌🏻'));
+
+
+const getRandomChoice = () => {
+    let random = Math.floor(Math.random() * 3)
+    switch (random) {
+        case 0 :
+            return 'Rock 🤜🏻'
+        case 1 :
+            return 'Paper ✋🏻'
+        case 2 : 
+            return 'Scissors ✌🏻'
+    }
 }
+
 function playRound(playerChoice, cpuChoice) {
-    cpuChoice = generateRandom()
-    cpuChoiceGlobal = cpuChoice
-    // Determine winner and add points to player's score.
     if(cpuChoice == playerChoice){
         return("Tie match!");
     }
@@ -38,43 +54,16 @@ function playRound(playerChoice, cpuChoice) {
     }
 }
 
-// 4. Three buttons with eventListeners that call playRound w/ correct playerChoice
-// Can also use document.getElementById, but query selector covers more bases
-const btnRock = document.querySelector('#btn-rock')
-const btnPaper = document.querySelector('#btn-paper')
-const btnScissors = document.querySelector('#btn-scissors')
-const playerScorecard = document.querySelector('.player-score')
-const cpuScorecard = document.querySelector('.cpu-score')
+// Returns true or false when the game is over.
+const isGameOver = () => {
+    return playerScore === 5 || cpuScore === 5;
+}
 
-btnRock.addEventListener('click', () => clicked('ROCK 🤜🏻'));
-btnPaper.addEventListener('click', () => clicked('PAPER ✋🏻'));
-btnScissors.addEventListener('click', () => clicked('SCISSORS ✌🏻'));
-
-
-// Need multiple things to be done when the button is pressed, and writing all of it
-// in the addEventListener line would be... sloppy and make me uncomfortable, so
-// we'll need to write a function that we can pass as the second arg for the click.
+/* Most of the game is 'played' from this button click, so we'll
+   put all of our functions in there that get called when a button
+   is clicked */
 function clicked(playerChoice) {
-    console.log(playerChoice)
-    playerScorecard.innerHTML = playerChoice
+    cpuChoice = getRandomChoice();
+    playRound(playerChoice, cpuChoice);
+    console.log(playerChoice, cpuChoice);
 }
-
-
-/* 3. remove 5 round logic
-const game = () => {
-    for (let i = 0; i < 5; i++) {
-        console.log(`### GAME ${i+1} ###`);
-        console.log(`${playRound()}`);
-        console.log(`Player Score: ${playerScore}   CPU Score: ${cpuScore}\n`);
-    
-    if (playerScore > cpuScore) {
-        console.log(`Player wins! ${playerScore} to CPU ${cpuScore}.`);
-    } else if (cpuScore > playerScore) {
-       console.log(`CPU wins! ${cpuScore} to Player's ${playerScore}.`);
-    } else {
-        console.log("Damn, tie match.");
-        }
-    }
-}
-*/
-// game();
