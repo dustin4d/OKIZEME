@@ -1,6 +1,7 @@
 //Initialize player and CPU score
 let playerScore= 0;
 let cpuScore = 0;
+let roundWin = '';
 
 // 4. Three buttons with eventListeners that call playRound w/ correct playerChoice
 // Can also use document.getElementById, but query selector covers more bases
@@ -11,46 +12,55 @@ const playerScorecard = document.querySelector('.player-score')
 const cpuScorecard = document.querySelector('.cpu-score')
 
 // Give the buttons the eventlisteners that will play the game
-btnRock.addEventListener('click', () => clicked('Rock 🤜🏻'));
-btnPaper.addEventListener('click', () => clicked('Paper ✋🏻'));
-btnScissors.addEventListener('click', () => clicked('Scissors ✌🏻'));
+btnRock.addEventListener('click', () => clicked('ROCK'));
+btnPaper.addEventListener('click', () => clicked('PAPER'));
+btnScissors.addEventListener('click', () => clicked('SCISSORS'));
 
-
+// Generates a random choice of RPS for the cpu to be called when clicked
 const getRandomChoice = () => {
     let random = Math.floor(Math.random() * 3)
     switch (random) {
         case 0 :
-            return 'Rock 🤜🏻'
+            return 'ROCK'
         case 1 :
-            return 'Paper ✋🏻'
+            return 'PAPER'
         case 2 : 
-            return 'Scissors ✌🏻'
+            return 'SCISSORS'
     }
 }
 
+// Main game logic; checks the winner as if it were RPS in real life
 function playRound(playerChoice, cpuChoice) {
     if(cpuChoice == playerChoice){
-        return("Tie match!");
+        roundWin = 'tie';
     }
     // Use bitwise OR operator to test playerChoice's values against cpuChoice()'s values.
     else if (
-        (playerChoice == 'Rock') && (cpuChoice == 'Scissors') ||
-        (playerChoice == 'Scissors') && (cpuChoice == 'Paper') ||
-        (playerChoice == 'Paper') && (cpuChoice == 'Rock')
+        (playerChoice == 'ROCK') && (cpuChoice == 'SCISSORS') ||
+        (playerChoice == 'SCISSORS') && (cpuChoice == 'PAPER') ||
+        (playerChoice == 'PAPER') && (cpuChoice == 'ROCK')
     ) {
         playerScore++;
-        return(`Player wins, using ${playerChoice}.`);
+        roundWin = 'player';
     }
     else if (
-        (cpuChoice == 'Rock') && (playerChoice == 'Scissors') ||
-        (cpuChoice == 'Scissors') && (playerChoice == 'Paper') ||
-        (cpuChoice == 'Paper') && (playerChoice == 'Rock')
+        (cpuChoice == 'ROCK') && (playerChoice == 'SCISSORS') ||
+        (cpuChoice == 'SCISSORS') && (playerChoice == 'PAPER') ||
+        (cpuChoice == 'PAPER') && (playerChoice == 'ROCK')
     ) {
         cpuScore++;
-        return(`CPU wins using ${cpuChoice}.`);
+        roundWin = 'cpu'
     }
-    else {
-        return "Invalid input.";
+}
+
+// Adds the points necessary to the winner of the current round
+const addPoints = () => {
+    if (roundWin == 'tie') {
+        console.log('Tie round')
+    } else if (roundWin == 'player') {
+        playerScorecard.innerHTML = playerScore
+    } else if (roundWin == 'cpu') {
+        cpuScorecard.innerHTML = cpuScore
     }
 }
 
@@ -65,5 +75,9 @@ const isGameOver = () => {
 function clicked(playerChoice) {
     cpuChoice = getRandomChoice();
     playRound(playerChoice, cpuChoice);
-    console.log(playerChoice, cpuChoice);
+    addPoints()
+    console.log(playerScore, cpuScore)
+    if (isGameOver()) {
+        console.log('Game is over')
+    }
 }
