@@ -1,3 +1,11 @@
+/* NOTES
+   The main idea is to use some functional programming here by compartmentalizing as much
+   of the code into their own functions as I can, the DRY principle. Anything left in the
+   global scope like the player/cpu scores and current round winner is done purposefully
+   as for the functions themselves to reach out to and grab so that the program can stay
+   neatly organized
+   */
+
 //Initialize player and CPU score
 let playerScore= 0;
 let cpuScore = 0;
@@ -10,6 +18,9 @@ const btnPaper = document.querySelector('#btn-paper')
 const btnScissors = document.querySelector('#btn-scissors')
 const playerScorecard = document.querySelector('.player-score')
 const cpuScorecard = document.querySelector('.cpu-score')
+const messageBox = document.querySelector('.messageBox')
+const buttons = document.querySelector('.buttons')
+const gameWinner = document.querySelector('.gameWinner')
 
 // Give the buttons the eventlisteners that will play the game
 btnRock.addEventListener('click', () => clicked('ROCK'));
@@ -56,7 +67,6 @@ function playRound(playerChoice, cpuChoice) {
 // Adds the points necessary to the winner of the current round
 const addPoints = () => {
     if (roundWin == 'tie') {
-        console.log('Tie round')
     } else if (roundWin == 'player') {
         playerScorecard.innerHTML = playerScore
     } else if (roundWin == 'cpu') {
@@ -76,8 +86,16 @@ function clicked(playerChoice) {
     cpuChoice = getRandomChoice();
     playRound(playerChoice, cpuChoice);
     addPoints()
-    console.log(playerScore, cpuScore)
     if (isGameOver()) {
-        console.log('Game is over')
+        gameOverScreen()
+        buttons.remove();
+    }
+}
+
+function gameOverScreen() {
+    if (playerScore === 5) {
+        gameWinner.innerHTML = 'PLAYER WINS'
+    } else {
+        gameWinner.innerHTML = 'CPU WINS'
     }
 }

@@ -5,30 +5,34 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="styles/styles.css" rel='stylesheet'/>
-	<title>Document</title>
+
+	<!-- Font Imports -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+	<title>OKIZEME</title>
 </head>
 <body>
-	<div class="container">
+	<div class="container vertical-center">
 		<div class="header">
-			<h1>起き攻め</h1>
-			<h2>Okizeme</h2>
-			<h3>Best of 5</h3>
+			<h1><a target="_blank" href="https://tekken.fandom.com/wiki/Okizeme">起き攻め</a></h1>
+			<h2 class="subtitle">Best of 5</h3>
 		</div>
 		<div class="scoreboard">
-			<p class="player-score"></p>
-			<span>-</span>
-			<p class="cpu-score"></p>
+			<p class="player-score scores">0</p>
+			<span class="scores">-</span>
+			<p class="cpu-score scores">0</p>
 		</div>
 		<div class="messageBox">
-
+			<p class="gameWinner"></p>
+			<p class="playAgain"></p>
 		</div>
 
-		<div class="buttons vertical-center">
+		<div class="buttons">
 			<button id="btn-rock">Rock</button>
 			<button id="btn-paper">Paper</button>
 			<button id="btn-scissors">Scissors</button>
-		</div>
-		<div id="cpu-panel">
 		</div>
 	</div>
 </body>
