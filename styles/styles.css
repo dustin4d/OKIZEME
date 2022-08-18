@@ -56,11 +56,23 @@ button {
     margin: 5px 5px;
     width: 200px;
     height: 100px;
-    border: 0;
-    border-bottom: 4px solid #D9534F;
+    border: 1px solid #D9534F;
+    border-bottom: 6px solid #D9534F;
     border-radius: 3px;
     background-color: #F2DEDE;
     font-size: 2em;    
+}
+
+button:active {
+    margin: 8px 5px;
+    width: 200px;
+    height: 100px;
+    border: 1px solid #D9534F;
+    border-bottom: 1px solid #D9534F;
+    border-radius: 3px;
+    background-color: #F2DEDE;
+    font-size: 2em;    
+
 }
 
 .scoreboard {
@@ -70,6 +82,7 @@ button {
     margin: 0 auto;
     padding: 0 2em;
 
+    border: 1px solid #D9534F;
     border-bottom: 4px solid #D9534F;
     background-color: #F2DEDE;
     border-radius: 3px;
