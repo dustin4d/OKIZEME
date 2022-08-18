@@ -89,6 +89,33 @@ button:active {
 }
 
 .scores {
-    font-family: 'Permanent Marker';
+    font-family: 'Permanent Marker', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2em;
+}
+
+.messageBox {
+    font-family: 'Russo One', Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.playAgainContainer {
+    display: flex;
+    justify-items: center;
+}
+
+.playAgain {
+    margin: 0 auto;
+    visibility: hidden;
+    font-family: 'Russo One', Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.playAgain:active {
+    margin: 0 auto;
+    visibility: hidden;
+    font-family: 'Russo One', Arial, Helvetica, sans-serif;
+    width: 100%;
+
+
 }

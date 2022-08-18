@@ -12,6 +12,7 @@ const playerScorecard = document.querySelector('.player-score')
 const cpuScorecard = document.querySelector('.cpu-score')
 const messageBox = document.querySelector('.messageBox p')
 const buttons = document.querySelector('.buttons')
+const btnPlayAgain = document.querySelector('.playAgain')
 
 // Give the buttons the eventlisteners that will play the game
 btnRock.addEventListener('click', () => clicked('ROCK'));
@@ -95,11 +96,11 @@ function clicked(playerChoice) {
         (playerChoice == 'PAPER') && (cpuChoice == 'ROCK')
     )  { // These nested ifs are just for updating the kill feed    
             if(playerChoice == 'ROCK') {messageBox.innerHTML = 
-                'Player wins with <i class="fa-solid fa-hand-fist"></i>'}
+                'You win with <i class="fa-solid fa-hand-fist"></i>'}
             if(playerChoice == 'SCISSORS') {messageBox.innerHTML = 
-                'Player wins with <i class="fa-solid fa-shield"></i>'}
+                'You win with <i class="fa-solid fa-shield"></i>'}
             if(playerChoice == 'PAPER') {messageBox.innerHTML = 
-                'Player wins with <i class="fa-solid fa-drumstick-bite"></i>'}
+                'You win with <i class="fa-solid fa-drumstick-bite"></i>'}
     } else if (
         (cpuChoice == 'ROCK') && (playerChoice == 'SCISSORS') ||
         (cpuChoice == 'SCISSORS') && (playerChoice == 'PAPER') ||
@@ -120,4 +121,10 @@ function gameOverScreen() {
     } else {
         messageBox.innerHTML = 'CPU WINS'
     }
+    btnPlayAgain.style.visibility = 'visible';
+    restartGame();
 }}
+
+function restartGame() {
+    btnPlayAgain.addEventListener('click', () => {location.reload()})
+}
