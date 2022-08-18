@@ -10,9 +10,8 @@ const btnPaper = document.querySelector('#btn-paper')
 const btnScissors = document.querySelector('#btn-scissors')
 const playerScorecard = document.querySelector('.player-score')
 const cpuScorecard = document.querySelector('.cpu-score')
-const messageBox = document.querySelector('.messageBox')
+const messageBox = document.querySelector('.messageBox p')
 const buttons = document.querySelector('.buttons')
-const gameWinner = document.querySelector('.gameWinner')
 
 // Give the buttons the eventlisteners that will play the game
 btnRock.addEventListener('click', () => clicked('ROCK'));
@@ -78,22 +77,47 @@ function clicked(playerChoice) {
     cpuChoice = getRandomChoice();
     playRound(playerChoice, cpuChoice);
     addPoints()
+    killFeed(playerChoice, cpuChoice)
     if (isGameOver()) {
         gameOverScreen()
         buttons.remove();
     }
+
+    // This borrows the logic from the playRound function, but uses it to update the 
+    // winner and loser of each round.
+    function killFeed(playerChoice, cpuChoice) {
+    if(cpuChoice == playerChoice){
+        messageBox.innerHTML = 'TIE ROUND';
+    }
+    else if (
+        (playerChoice == 'ROCK') && (cpuChoice == 'SCISSORS') ||
+        (playerChoice == 'SCISSORS') && (cpuChoice == 'PAPER') ||
+        (playerChoice == 'PAPER') && (cpuChoice == 'ROCK')
+    )  { // These nested ifs are just for updating the kill feed    
+            if(playerChoice == 'ROCK') {messageBox.innerHTML = 
+                'Player wins with <i class="fa-solid fa-hand-fist"></i>'}
+            if(playerChoice == 'SCISSORS') {messageBox.innerHTML = 
+                'Player wins with <i class="fa-solid fa-shield"></i>'}
+            if(playerChoice == 'PAPER') {messageBox.innerHTML = 
+                'Player wins with <i class="fa-solid fa-drumstick-bite"></i>'}
+    } else if (
+        (cpuChoice == 'ROCK') && (playerChoice == 'SCISSORS') ||
+        (cpuChoice == 'SCISSORS') && (playerChoice == 'PAPER') ||
+        (cpuChoice == 'PAPER') && (playerChoice == 'ROCK')
+    ) {
+            if(cpuChoice == 'ROCK') {messageBox.innerHTML = 
+                'CPU wins with <i class="fa-solid fa-hand-fist"></i>'}
+            if(cpuChoice == 'SCISSORS') {messageBox.innerHTML = 
+                'CPU wins with <i class="fa-solid fa-shield"></i>'}
+            if(cpuChoice == 'PAPER') {messageBox.innerHTML = 
+                'CPU wins with <i class="fa-solid fa-drumstick-bite"></i>'}
+        }
 }
 
 function gameOverScreen() {
     if (playerScore === 5) {
-        gameWinner.innerHTML = 'PLAYER WINS'
+        messageBox.innerHTML = 'Player Wins'
     } else {
-        gameWinner.innerHTML = 'CPU WINS'
+        messageBox.innerHTML = 'CPU WINS'
     }
-
-    // show restart button function
-}
-
-function showRestart() {
-    
-}
+}}
