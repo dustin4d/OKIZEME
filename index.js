@@ -1,11 +1,3 @@
-/* NOTES
-   The main idea is to use some functional programming here by compartmentalizing as much
-   of the code into their own functions as I can, the DRY principle. Anything left in the
-   global scope like the player/cpu scores and current round winner is done purposefully
-   as for the functions themselves to reach out to and grab so that the program can stay
-   neatly organized
-   */
-
 //Initialize player and CPU score
 let playerScore= 0;
 let cpuScore = 0;
@@ -98,4 +90,10 @@ function gameOverScreen() {
     } else {
         gameWinner.innerHTML = 'CPU WINS'
     }
+
+    // show restart button function
+}
+
+function showRestart() {
+    
 }
