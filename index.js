@@ -13,6 +13,7 @@ const cpuScorecard = document.querySelector('.cpu-score')
 const messageBox = document.querySelector('.messageBox p')
 const buttons = document.querySelector('.buttons')
 const btnPlayAgain = document.querySelector('.playAgain')
+const scoreboard = document.querySelector('.scoreboard')
 
 // Give the buttons the eventlisteners that will play the game
 btnRock.addEventListener('click', () => clicked('ROCK'));
@@ -78,6 +79,7 @@ function clicked(playerChoice) {
     cpuChoice = getRandomChoice();
     playRound(playerChoice, cpuChoice);
     addPoints()
+    colorChange();
     killFeed(playerChoice, cpuChoice)
     if (isGameOver()) {
         gameOverScreen()
@@ -113,6 +115,20 @@ function clicked(playerChoice) {
             if(cpuChoice == 'PAPER') {messageBox.innerHTML = 
                 'CPU wins with <i class="fa-solid fa-drumstick-bite"></i>'}
         }
+}
+
+function colorChange() {
+    if(roundWin == 'player'){
+        // change scoreboard to green
+        scoreboard.style.backgroundColor = '#DFF0D8'
+        scoreboard.style.borderColor = "#73D216"        
+    } else if (roundWin == 'cpu') {
+        //change scoreboard to red
+        scoreboard.style.backgroundColor = '#F2DEDE'
+        scoreboard.style.borderColor = '#D9534F'
+    } else {
+        //change scoreboard to black
+    }
 }
 
 function gameOverScreen() {
